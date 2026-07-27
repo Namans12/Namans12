@@ -81,9 +81,24 @@ source. Delete the whole module if you're not looking for anything.
 
 <a id="intro-video"></a>
 ### intro-video
-`assets/naman-intro.gif` — 640×360, 10fps, 64 colours, 4.1 MB. It autoplays and loops
-the moment the profile loads, and links to `assets/naman-intro.mp4` for the crisp
-24fps original with sound.
+`assets/naman-intro.gif` — 520×293, 64 colours, 5.5 MB. It autoplays and loops the
+moment the profile loads, and links to `assets/naman-intro.mp4` for the original with
+sound.
+
+**Do not lower the framerate to save space.** The first build ran at 10fps and looked
+laggy, and the cause was subtler than the low number: the source is 24fps, and 24 ÷ 10
+= 2.4, so the encoder had to drop *two* frames then *three*, alternating. Even timing,
+uneven motion — the eye reads that as stutter.
+
+The fix is to keep every source frame. GIF delays are whole centiseconds and 100 ÷ 24 =
+4.167, which doesn't divide cleanly, so ffmpeg would otherwise alternate 4cs and 5cs
+delays. Retiming the clip by ×0.96 first maps all 240 frames onto an exact 25fps grid —
+one uniform 4cs delay, nothing dropped, nothing duplicated. The clip ends up 9.6s
+instead of 10s, which nobody will notice.
+
+Width came down from 640 to 520 to pay for the extra frames. Frame count and palette
+size drive GIF weight far more than dimensions do, and smoothness is worth more than
+120 pixels on a hero element.
 
 **Why a GIF and not a video player.** GitHub's sanitizer deletes `<video>` outright —
 not just its attributes, the whole element. Verified against GitHub's own renderer:
@@ -118,12 +133,19 @@ something already moving beats something waiting to be clicked.
 file size far more than width, and cropping barely helps:
 
 ```bash
-ffmpeg -i assets/naman-intro.mp4 -vf "fps=10,scale=640:-1:flags=lanczos,palettegen=max_colors=64:stats_mode=diff" palette.png
-ffmpeg -i assets/naman-intro.mp4 -i palette.png -lavfi "fps=10,scale=640:-1:flags=lanczos[v];[v][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" assets/naman-intro.gif
+ffmpeg -i assets/naman-intro.mp4 -vf "setpts=PTS*0.96,fps=25,scale=520:-1:flags=lanczos,palettegen=max_colors=64:stats_mode=diff" palette.png
+ffmpeg -i assets/naman-intro.mp4 -i palette.png -lavfi "setpts=PTS*0.96,fps=25,scale=520:-1:flags=lanczos[v];[v][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" assets/naman-intro.gif
+```
+
+Verify a rebuild kept its cadence — one distinct delay value is what you want:
+
+```bash
+ffprobe -v error -select_streams v:0 -show_entries frame=duration_time -of csv=p=0 assets/naman-intro.gif | sort -u
 ```
 
 Dropping to 48 colours saves ~1 MB but visibly speckles the desk and laptop.
-`bayer_scale` maxes out at 5 — higher values error rather than compressing further.
+`bayer_scale` maxes out at 5 — higher values error out rather than compressing further.
+Cropping dead space barely helps; frame count and palette size are what matter.
 
 The source artwork lives outside the repo at `../intro-source.png` so the 1.6 MB
 original isn't committed alongside the render.

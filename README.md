@@ -106,7 +106,9 @@
      officially supported. Clicking it opens the original mp4 (crisper, 24fps,
      with sound).
 
-     640x360 · 10fps · 64 colours · 4.1 MB (GitHub's image limit is 10 MB).
+     520x293 · all 240 source frames · uniform 4cs delay · 5.5 MB
+     (GitHub's image limit is 10 MB). Do not "optimise" this by lowering the
+     framerate — that is what made the first version look laggy.
      Regenerating it, and the mp4-attachment alternative: CUSTOMIZE.md#intro-video
 -->
 <div align="center">
@@ -114,12 +116,10 @@
 <a href="https://github.com/Namans12/Namans12/blob/master/assets/naman-intro.mp4">
   <img
     src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/naman-intro.gif"
-    width="640"
+    width="560"
     alt="Naman at his desk — typing, then solving a Rubik's cube"
   />
 </a>
-
-<sub>↑ click for the full-quality version with sound</sub>
 
 </div>
 <!-- ══════════════════ END MODULE: INTRO-VIDEO ══════════════════ -->
