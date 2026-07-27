@@ -81,43 +81,55 @@ source. Delete the whole module if you're not looking for anything.
 
 <a id="intro-video"></a>
 ### intro-video
-A composed thumbnail (`assets/intro-thumbnail.png`) linking to
-`assets/naman-intro.mp4`.
+`assets/naman-intro.gif` — 640×360, 10fps, 64 colours, 4.1 MB. It autoplays and loops
+the moment the profile loads, and links to `assets/naman-intro.mp4` for the crisp
+24fps original with sound.
 
-**Why it is a link rather than a real player.** GitHub's sanitizer removes `<video>`
-outright. Not just the attributes — the whole element. Verified against GitHub's own
-markdown renderer:
+**Why a GIF and not a video player.** GitHub's sanitizer deletes `<video>` outright —
+not just its attributes, the whole element. Verified against GitHub's own renderer:
 
-| What was submitted | What GitHub returned |
+| Submitted | Returned |
 | --- | --- |
 | `<video src poster controls>` | *(nothing)* |
 | `<video><source src type></video>` | `<source type="video/mp4">` — `src` stripped too |
 | `<video autoplay loop muted>` | *(nothing)* |
-| `<a href="…mp4"><img src="…png"></a>` | **kept intact** |
+| `<a href="…mp4"><img src="…gif"></a>` | **kept intact** |
 
-So "image with a play button that plays the video in place" cannot be built in a
-README. The last row is what this module uses: a thumbnail that *looks* like a player
-and opens GitHub's video viewer when clicked.
+A GIF is the only format that both animates inline *and* is officially supported.
 
-**The alternative that does play inline.** Drag the `.mp4` into any GitHub issue
-comment box (don't submit the comment). GitHub uploads it and gives you a
-`https://github.com/user-attachments/assets/<uuid>` URL. Put that URL on **its own
-line** in the README and GitHub renders a genuine inline player.
+**Why not WebP.** Animated WebP encoded the same clip at **0.96 MB versus 4.1 MB** —
+four times smaller at higher resolution and framerate. It was rejected anyway:
+[GitHub's own docs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files)
+list the supported formats as PNG, GIF, JPEG, SVG and `.mp4`/`.mov`/`.webm`. WebP is
+absent. An unlisted format that happens to work today is exactly the kind of thing that
+silently breaks later, and camo caches the breakage.
 
-What you give up: the poster frame becomes the video's own first frame — you cannot
-supply a custom one, so the illustrated thumbnail and play button are lost. Pick based
-on which matters more: a designed still, or in-place playback.
+**The alternative: a real player.** Drag the `.mp4` into any GitHub issue comment box —
+don't submit the comment. GitHub uploads it and hands back a
+`https://github.com/user-attachments/assets/<uuid>` URL. Put that on **its own line**
+in the README and GitHub renders a genuine player with controls and sound. The same
+docs confirm `.mp4` is supported up to 10 MB on a free plan; this clip is 2.5 MB.
 
-**Regenerating the thumbnail.** It was composited from the source artwork at 1280×720
-to match the video: an 18% dim, a bottom vignette, a violet→cyan→teal gradient ring
-with a cyan glow, a caption, and a duration chip. The source art is kept outside the
-repo at `../intro-source.png` so the 1.6 MB original isn't committed next to the
-836 KB composite that replaces it. To swap the artwork, re-run the compositing script
-against a new source and overwrite `assets/intro-thumbnail.png`.
+Trade-off: a player shows a static first frame until clicked, so the profile loses its
+motion-on-load. The GIF was chosen because a profile README is skimmed in seconds —
+something already moving beats something waiting to be clicked.
 
-The `<img>` uses the absolute `raw.githubusercontent.com` URL rather than a relative
-path, because a profile README renders at `github.com/Namans12`, not inside the repo —
-absolute is the deterministic choice.
+**Regenerating the GIF.** Two-pass palette encode; `fps` and `max_colors` dominate the
+file size far more than width, and cropping barely helps:
+
+```bash
+ffmpeg -i assets/naman-intro.mp4 -vf "fps=10,scale=640:-1:flags=lanczos,palettegen=max_colors=64:stats_mode=diff" palette.png
+ffmpeg -i assets/naman-intro.mp4 -i palette.png -lavfi "fps=10,scale=640:-1:flags=lanczos[v];[v][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" assets/naman-intro.gif
+```
+
+Dropping to 48 colours saves ~1 MB but visibly speckles the desk and laptop.
+`bayer_scale` maxes out at 5 — higher values error rather than compressing further.
+
+The source artwork lives outside the repo at `../intro-source.png` so the 1.6 MB
+original isn't committed alongside the render.
+
+The `<img>` uses an absolute `raw.githubusercontent.com` URL rather than a relative
+path, because a profile README renders at `github.com/Namans12`, not inside the repo.
 
 ### about
 Two-column table — prose left, GIF right. The `width="62%"` / `width="38%"` split is

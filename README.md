@@ -98,23 +98,28 @@
 
 
 <!-- ══════════════════ MODULE: INTRO-VIDEO ══════════════════
-     Thumbnail with a play button, linking to assets/naman-intro.mp4.
+     An animated GIF, so it plays by itself the moment the page loads — no
+     click, no player chrome.
 
-     Why it's a link and not a player: GitHub's HTML sanitizer strips <video>
-     completely — src, poster, controls and all — so an in-README player with a
-     custom poster frame is not possible. Clicking this opens GitHub's own
-     video viewer for the file. See CUSTOMIZE.md#intro-video, which also covers
-     the alternative that *does* play inline (and what you give up for it).
+     GitHub's sanitizer deletes <video> outright, so a real embedded player is
+     impossible here. A GIF is the only format that animates inline and is
+     officially supported. Clicking it opens the original mp4 (crisper, 24fps,
+     with sound).
+
+     640x360 · 10fps · 64 colours · 4.1 MB (GitHub's image limit is 10 MB).
+     Regenerating it, and the mp4-attachment alternative: CUSTOMIZE.md#intro-video
 -->
 <div align="center">
 
 <a href="https://github.com/Namans12/Namans12/blob/master/assets/naman-intro.mp4">
   <img
-    src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/intro-thumbnail.png"
-    width="72%"
-    alt="Watch a 10-second intro"
+    src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/naman-intro.gif"
+    width="640"
+    alt="Naman at his desk — typing, then solving a Rubik's cube"
   />
 </a>
+
+<sub>↑ click for the full-quality version with sound</sub>
 
 </div>
 <!-- ══════════════════ END MODULE: INTRO-VIDEO ══════════════════ -->
