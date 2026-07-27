@@ -97,12 +97,33 @@
 <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%" alt="" />
 
 
+<!-- ══════════════════ MODULE: INTRO-VIDEO ══════════════════
+     Thumbnail with a play button, linking to assets/naman-intro.mp4.
+
+     Why it's a link and not a player: GitHub's HTML sanitizer strips <video>
+     completely — src, poster, controls and all — so an in-README player with a
+     custom poster frame is not possible. Clicking this opens GitHub's own
+     video viewer for the file. See CUSTOMIZE.md#intro-video, which also covers
+     the alternative that *does* play inline (and what you give up for it).
+-->
+<div align="center">
+
+<a href="https://github.com/Namans12/Namans12/blob/master/assets/naman-intro.mp4">
+  <img
+    src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/intro-thumbnail.png"
+    width="72%"
+    alt="Watch a 10-second intro"
+  />
+</a>
+
+</div>
+<!-- ══════════════════ END MODULE: INTRO-VIDEO ══════════════════ -->
+
+
 <!-- ══════════════════ MODULE: ABOUT ══════════════════
      Docs: CUSTOMIZE.md#about
 -->
 ## <img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" width="26" /> &nbsp; About
-
-<img align="right" width="34%" src="https://user-images.githubusercontent.com/74038190/212750999-42ff8a64-dad8-4772-9648-849968543991.gif" alt="" />
 
 I build the layer between raw data and things that make decisions.
 
@@ -127,7 +148,6 @@ dashboards, and the wiring between them. A model that nobody can reach isn't fin
 <img src="https://img.shields.io/badge/IST%20UTC+5:30-0D1117?style=flat-square&logo=clockify&logoColor=7C3AED" alt="IST UTC+5:30" />
 <img src="https://img.shields.io/badge/B.Tech%20CSE%20(AIML)%20%C2%B7%208.10%20CGPA-0D1117?style=flat-square&labelColor=2DD4BF" alt="B.Tech CSE AIML, 8.10 CGPA" />
 
-<br clear="right" />
 <!-- ══════════════════ END MODULE: ABOUT ══════════════════ -->
 
 

@@ -19,7 +19,9 @@
 [CmdletBinding()]
 param(
     [string] $Path       = (Join-Path $PSScriptRoot 'README.md'),
-    [int]    $TimeoutSec = 30
+    # 60s, not 30: streak-stats.demolab.com regularly takes 15-20 seconds and
+    # sometimes longer. A short timeout reports a working service as broken.
+    [int]    $TimeoutSec = 60
 )
 
 $ErrorActionPreference = 'Stop'
@@ -129,6 +131,12 @@ foreach ($url in $urls) {
         # has run for the first time, so flag them separately.
         if ($url -match 'raw\.githubusercontent\.com/.+/output/') {
             $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'snake output branch not built yet — run the workflow' })
+            Write-Host ("  [pend] {0}" -f $short) -ForegroundColor Yellow
+        }
+        elseif ($url -match 'raw\.githubusercontent\.com/Namans12/Namans12/|github\.com/Namans12/Namans12/blob/') {
+            # Files committed locally but not pushed yet. These 404 until the
+            # push lands, which is expected rather than broken.
+            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'repo asset not pushed yet — will resolve after git push' })
             Write-Host ("  [pend] {0}" -f $short) -ForegroundColor Yellow
         }
         elseif (Test-BotBlocked -Url $url -Message $msg) {

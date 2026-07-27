@@ -79,6 +79,46 @@ Three call-to-action badges. Edit the text between `/badge/` and the colour to c
 what you're advertising. Currently: Agentic AI & LLM work, data platform builds, open
 source. Delete the whole module if you're not looking for anything.
 
+<a id="intro-video"></a>
+### intro-video
+A composed thumbnail (`assets/intro-thumbnail.png`) linking to
+`assets/naman-intro.mp4`.
+
+**Why it is a link rather than a real player.** GitHub's sanitizer removes `<video>`
+outright. Not just the attributes — the whole element. Verified against GitHub's own
+markdown renderer:
+
+| What was submitted | What GitHub returned |
+| --- | --- |
+| `<video src poster controls>` | *(nothing)* |
+| `<video><source src type></video>` | `<source type="video/mp4">` — `src` stripped too |
+| `<video autoplay loop muted>` | *(nothing)* |
+| `<a href="…mp4"><img src="…png"></a>` | **kept intact** |
+
+So "image with a play button that plays the video in place" cannot be built in a
+README. The last row is what this module uses: a thumbnail that *looks* like a player
+and opens GitHub's video viewer when clicked.
+
+**The alternative that does play inline.** Drag the `.mp4` into any GitHub issue
+comment box (don't submit the comment). GitHub uploads it and gives you a
+`https://github.com/user-attachments/assets/<uuid>` URL. Put that URL on **its own
+line** in the README and GitHub renders a genuine inline player.
+
+What you give up: the poster frame becomes the video's own first frame — you cannot
+supply a custom one, so the illustrated thumbnail and play button are lost. Pick based
+on which matters more: a designed still, or in-place playback.
+
+**Regenerating the thumbnail.** It was composited from the source artwork at 1280×720
+to match the video: an 18% dim, a bottom vignette, a violet→cyan→teal gradient ring
+with a cyan glow, a caption, and a duration chip. The source art is kept outside the
+repo at `../intro-source.png` so the 1.6 MB original isn't committed next to the
+836 KB composite that replaces it. To swap the artwork, re-run the compositing script
+against a new source and overwrite `assets/intro-thumbnail.png`.
+
+The `<img>` uses the absolute `raw.githubusercontent.com` URL rather than a relative
+path, because a profile README renders at `github.com/Namans12`, not inside the repo —
+absolute is the deterministic choice.
+
 ### about
 Two-column table — prose left, GIF right. The `width="62%"` / `width="38%"` split is
 what keeps the text from crushing on narrow screens; adjust both together.
@@ -147,6 +187,19 @@ commented block in the README explains it and shows how to restore the one card
 > To check whether the service itself is actually broken, request the URL directly
 > rather than looking at your profile — `.\verify-links.ps1` does this and bypasses
 > camo entirely.
+
+> **The streak card is the weakest link, and it is worth knowing why.** Measured
+> directly, `streak-stats.demolab.com` takes **15–20 seconds** to answer when it answers
+> at all — two of three consecutive requests timed out at 30s. Camo gives up well before
+> that, caches the failure, and the card sits broken on your profile until the URL
+> changes.
+>
+> Nothing in this README can fix that; it is a free shared instance under load. The only
+> real remedies are to **self-host it** (fork
+> [DenverCoder1/github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats),
+> deploy to Vercel with a PAT — same procedure as the stats card in
+> [SETUP.md](SETUP.md)), or to **delete the card**. If it breaks repeatedly and you
+> don't want to self-host, deleting it is a legitimate choice rather than a defeat.
 
 <a id="trophies"></a>
 **Trophies** are commented out. `github-profile-trophy.vercel.app` returns
