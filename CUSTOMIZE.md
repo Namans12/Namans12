@@ -1,0 +1,248 @@
+# Customize
+
+Every section of `README.md` is wrapped in a marker pair:
+
+```html
+<!-- ══════════════════ MODULE: STATS ══════════════════ ... -->
+        ...content...
+<!-- ══════════════════ END MODULE: STATS ══════════════════ -->
+```
+
+**To remove a section**, delete everything from its opening marker to its matching
+`END MODULE` line. The modules don't reference each other, so nothing else breaks.
+
+**To reorder sections**, cut and paste whole marker-to-marker blocks. The divider GIFs
+sit *between* modules, so move those separately if the spacing looks off.
+
+---
+
+## The palette
+
+Every colour in the README comes from this set. If you restyle, change these
+consistently or the page stops looking designed.
+
+| Role | Hex | Used for |
+| --- | --- | --- |
+| Base | `0D1117` | GitHub's dark canvas — matches so cards look inset |
+| Panel | `161B22` | badge label backgrounds |
+| Border | `30363D` | card borders |
+| Violet | `7C3AED` | primary accent, gradient start |
+| Cyan | `22D3EE` | headline text, links, gradient middle |
+| Teal | `2DD4BF` | gradient end, tertiary accent |
+| Text | `E6EDF3` | headings on coloured backgrounds |
+| Muted | `8B949E` | card body text |
+
+Cards use `bg_color=00000000` (fully transparent) so a single image reads correctly on
+both GitHub light and dark. If you set a solid background on one card, set it on all of
+them — a single opaque card in a transparent row is the most obvious way to make this
+look homemade.
+
+---
+
+## Modules
+
+### hero
+The waving gradient banner. Change the name via `text=`, the subtitle via `desc=`.
+URL-encode them: space is `%20`, `·` is `%C2%B7`.
+Other `type=` values: `wave`, `slice`, `egg`, `rect`, `soft`, `cylinder`.
+
+> **Never put a plain `&` in `text=` or `desc=`.** capsule-render drops your text into
+> the SVG without escaping it, and a bare `&` makes the file invalid XML. Browsers
+> refuse to render invalid SVG, so the *entire banner* silently vanishes — while the URL
+> still returns `200 OK`, which is why this is so easy to ship by accident.
+>
+> Encode it as `%26amp%3B` instead. That reaches the SVG as `&amp;`, which is valid and
+> still displays as `&`. The current subtitle uses exactly this.
+>
+> `verify-links.ps1` now XML-parses every SVG response specifically to catch this.
+
+### typing
+The animated terminal headline. Lines live in the `lines=` parameter, separated by `;`
+and URL-encoded — space is `+`, `&` is `%26`, `,` is `%2C`, `@` is `%40`, `→` is
+`%E2%86%92`. Add or remove lines freely; the SVG resizes itself.
+Slow it down with `duration=` (ms per line) and `pause=` (ms between).
+
+### social
+Animated icons first, then a badge row.
+
+Only **LinkedIn, Twitter and Discord** exist as animated GIFs in the
+[Cool-GIFs](https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub) set — there is no
+GitHub or email icon in it, which is why those are badges instead. Don't substitute a
+lookalike; mismatched icon styles are exactly what makes a profile look thrown together.
+
+The Discord icon is deliberately **not a link**. Discord usernames aren't URL-addressable
+— only numeric IDs are — so a `discord.com/users/Naman1201` link goes nowhere useful.
+The username shows on hover and in the badge.
+
+### open-to
+Three call-to-action badges. Edit the text between `/badge/` and the colour to change
+what you're advertising. Currently: Agentic AI & LLM work, data platform builds, open
+source. Delete the whole module if you're not looking for anything.
+
+### about
+Two-column table — prose left, GIF right. The `width="62%"` / `width="38%"` split is
+what keeps the text from crushing on narrow screens; adjust both together.
+Swap the GIF for any other from the Cool-GIFs *Work Culture* section.
+
+### whoami
+A fenced Python block. **This is the only visual module with zero external
+dependencies** — if every service on earth goes down, this still renders. Worth keeping
+for that reason alone.
+
+### stack
+Grouped rows, one technology cluster per table row.
+
+Icons come from [skillicons.dev](https://skillicons.dev). Use the **canonical** names
+from `https://skillicons.dev/api/icons`, not the short aliases — `python` not `py`,
+`typescript` not `ts`, `tailwindcss` not `tailwind`. An unrecognised name renders a
+blank tile rather than erroring, so it's easy to miss.
+
+skillicons has no icon for Databricks, Spark, Delta Lake, Azure Data Factory, Fabric or
+Neo4j, so those use `shields.io` badges. That mix is intentional.
+
+> **Watch out:** shields.io no longer serves several brand logos — `linkedin`,
+> `microsoft`, `microsoftazure`, `windows`, `openai` and `codepen` all silently render
+> *without* an icon. The badges using those brands are therefore text-only by design.
+> Before adding `&logo=something`, confirm it actually renders — compare the response
+> size against a badge with no logo at all.
+
+### projects
+Live repo cards. To swap a project, change `repo=` in that card's URL. To change how
+many, add or remove `<a>` blocks — they're `width="49%"` so they pair two per row.
+
+The `<details>` block underneath holds the long-form write-up for the two flagships.
+Add more entries there rather than lengthening the card grid; the cards are for
+scanning, the accordion is for people who stopped to read.
+
+> These point at `github-readme-stats-sigma-five.vercel.app`, a community mirror,
+> because the official instance is down. See [SETUP.md](SETUP.md) for why and how to
+> self-host.
+
+### credentials
+Static badges — certifications left, recognition right. Never breaks, no services
+involved. Add a row by copying an `<img>` line and the `<br/>` after it.
+
+### stats
+Stats card, top languages, streak, activity graph.
+
+The four `github-profile-summary-cards` panels that used to follow were removed —
+they reported different commit counts than the stats card sitting right above them,
+duplicated the language breakdown, and rate-limited into a red `ERROR!!!` panel. The
+commented block in the README explains it and shows how to restore the one card
+(productive-time) that added anything.
+
+> **When a card shows an error that won't go away**
+>
+> GitHub does not hotlink your images — it proxies every one through
+> `camo.githubusercontent.com` and **caches the result**. If a service was rate-limited
+> at the moment camo fetched it, camo caches the *error image*, and your profile keeps
+> showing "Failed to retrieve contributions" or "Cards are temporarily rate limited"
+> long after the service is healthy again.
+>
+> Reloading won't help, and neither will waiting, because camo isn't re-fetching.
+> **Change the URL.** Any difference produces a new camo URL and forces a fresh fetch —
+> add or tweak a harmless parameter like `&card_width=495`. That is exactly why the
+> streak card carries one.
+>
+> To check whether the service itself is actually broken, request the URL directly
+> rather than looking at your profile — `.\verify-links.ps1` does this and bypasses
+> camo entirely.
+
+<a id="trophies"></a>
+**Trophies** are commented out. `github-profile-trophy.vercel.app` returns
+`402 Payment Required` — the maintainer's hosting is over its billing limit, so it's
+down for every user, not just you. To bring them back, either uncomment the block once
+the service recovers, or fork
+[ryo-ma/github-profile-trophy](https://github.com/ryo-ma/github-profile-trophy), deploy
+it to Vercel, and point the URL at your own instance.
+
+### snake
+Needs the GitHub Action to have run once — see [SETUP.md](SETUP.md) step 3. Until then
+both URLs 404 and you'll see a broken image.
+
+Colours are set in `.github/workflows/snake.yml`, not here. `color_dots` takes five
+values, lightest (no contributions) to darkest (most).
+
+### currently
+Plain table. Keep the four rows short — this section works because it's scannable.
+
+### dev-setup
+**These were inferred from your environment and stack, not confirmed.** Edit
+`skillicons.dev/icons?i=...` to list what you genuinely use day to day. Currently:
+VS Code, Windows, PowerShell, Git, Docker, Postman, Notion, Figma.
+
+### easter-egg
+A `<details>` that most visitors never open. Keep it genuine — the whole point is that
+it rewards someone who bothered. If you change it, don't turn it into another pitch.
+
+### footer
+Mirror of the hero gradient, reversed. If you change the hero colours, reverse the same
+values here or the page loses its bookend.
+
+---
+
+## Disabled modules
+
+These are written but commented out, because each needs setup and a half-configured
+card looks worse than no card.
+
+<a id="wakatime"></a>
+### WakaTime
+Coding time by language. Sign up at [wakatime.com](https://wakatime.com), install the
+plugin for your editor, then **Settings → make coding activity public**. Replace
+`YOUR_WAKATIME_USER` and uncomment.
+
+<a id="spotify"></a>
+### Spotify now-playing
+Deploy [novatorem](https://github.com/novatorem/novatorem) to Vercel and connect a
+Spotify app. Replace `YOUR-NOVATOREM-DEPLOY` and `YOUR_SPOTIFY_ID`, then uncomment.
+Worth knowing: it shows what you're listening to, on a page recruiters read.
+
+<a id="blog"></a>
+### Blog post feed
+Add [gautamkrishnar/blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)
+as a second Action pointing at your RSS feed. It rewrites whatever sits between these
+two markers, on a schedule. Paste them into the README where you want the list:
+
+```html
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
+```
+
+> They live here rather than in the README's disabled-modules block for a concrete
+> reason: **HTML comments do not nest.** A comment ends at the *first* `-->` it meets,
+> so putting these markers inside another commented block terminates it early and dumps
+> the rest of the block onto the page as visible text. If you ever comment out a section
+> that already contains a comment, delete the inner one first.
+
+---
+
+## What GitHub will silently delete
+
+GitHub sanitizes README HTML. These never work, no matter how they're written:
+
+- `<script>` — stripped entirely
+- `<style>` blocks and `style="..."` attributes — stripped, so no CSS animation
+- `class=` and `id=` on most elements
+- `onerror`, `onclick`, any event handler
+- iframes, forms, embeds
+
+Which means **all motion has to come from an animated GIF, an animated SVG served by a
+third party, or an Action that regenerates a committed file.** There is no fourth
+option. If you find a profile doing something that looks impossible, it's one of those
+three.
+
+Layout is limited to `<div align>`, `<table>`, `<picture>`, `<details>`, `<img>` with
+`width`/`height`, and `&nbsp;` for spacing.
+
+---
+
+## After any edit
+
+```powershell
+.\verify-links.ps1
+```
+
+It strips commented-out blocks, checks every remaining URL, and tolerates sites that
+refuse bots (LinkedIn answers automated requests with `999`, CodePen with `403` — both
+are fine in a browser). Anything it reports as broken genuinely is.

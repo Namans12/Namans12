@@ -329,7 +329,10 @@ NLP post-processing assembling letters into coherent words. Team lead.
 
 <br/><br/>
 
-<img width="91%" src="https://streak-stats.demolab.com?user=Namans12&theme=tokyonight&hide_border=true&background=00000000&ring=22D3EE&fire=7C3AED&currStreakLabel=22D3EE&sideLabels=8B949E&dates=8B949E&currStreakNum=E6EDF3&sideNums=E6EDF3" alt="Contribution streak" />
+<!-- card_width is a real streak-stats option, and changing this URL at all is
+     what forces GitHub's camo proxy to re-fetch instead of serving a cached
+     "Failed to retrieve contributions" error image. See CUSTOMIZE.md#stats. -->
+<img width="91%" src="https://streak-stats.demolab.com?user=Namans12&theme=tokyonight&hide_border=true&background=00000000&ring=22D3EE&fire=7C3AED&currStreakLabel=22D3EE&sideLabels=8B949E&dates=8B949E&currStreakNum=E6EDF3&sideNums=E6EDF3&card_width=495" alt="Contribution streak" />
 
 <br/><br/>
 
@@ -337,21 +340,30 @@ NLP post-processing assembling letters into coherent words. Team lead.
 
 </div>
 
-<!-- ── SUB-MODULE: SUMMARY CARDS ──
-     These stand in for github-profile-trophy, which is currently returning
-     402 Payment Required for every user including its own author.
-     Delete this sub-block on its own if you don't want it.
+<!--
+  ── REMOVED: github-profile-summary-cards ───────────────────────────────────
+  Four cards from github-profile-summary-cards used to sit here. Removed
+  deliberately, for three reasons:
+
+    1. They contradicted the stats card directly above them. That service
+       reported "400 commits / contributed to 44" where github-readme-stats
+       reports "857 / 2". Two different numbers for the same thing, side by
+       side, reads as broken rather than thorough.
+    2. "Top Languages by Repo" and "Top Languages by Commit" both duplicated
+       the "Most Used Languages" card that is already above.
+    3. It is a shared free service with no API token, so it rate-limits often
+       and renders a red "ERROR!!! Cards are temporarily rate limited" panel.
+       Once GitHub's camo proxy caches that error image it stays visible on the
+       profile even after the service recovers.
+
+  To bring back just the productive-time histogram — the only one that showed
+  something the remaining cards don't — uncomment this:
+
+  <div align="center">
+    <img width="60%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Namans12&theme=tokyonight&utcOffset=5.5" alt="Productive time of day" />
+  </div>
+  ────────────────────────────────────────────────────────────────────────────
 -->
-<div align="center">
-
-<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Namans12&theme=tokyonight" alt="Repositories per language" />
-<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Namans12&theme=tokyonight" alt="Most committed language" />
-
-<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Namans12&theme=tokyonight" alt="Profile statistics" />
-<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Namans12&theme=tokyonight&utcOffset=5.5" alt="Productive time of day" />
-
-</div>
-<!-- ── END SUB-MODULE: SUMMARY CARDS ── -->
 
 <!--
   ── DISABLED: TROPHIES ──────────────────────────────────────────────────────
