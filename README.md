@@ -59,7 +59,7 @@
 <sub>&nbsp;🔴&nbsp; 🟡&nbsp; 🟢 &nbsp;&nbsp;&nbsp; <b>naman@github</b> &nbsp;—&nbsp; zsh</sub>
 
 <img
-  src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=12&duration=2400&pause=800&color=22D3EE&multiline=true&width=580&height=190&repeat=true&lines=%24+whoami+-%3E+Naman+Shrimal;%24+role%C2%A0%C2%A0+-%3E+Data+Engineer+%40+Navikenz;%24+focus%C2%A0+-%3E+AI%2C+Agents+%26+Applied+ML;%24+also%C2%A0%C2%A0+-%3E+Full-stack+when+it+ships;%24+status+-%3E+Building+until+my+tokens+expire%21"
+  src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=12&duration=2400&pause=800&color=22D3EE&multiline=true&width=552&height=96&repeat=true&lines=%24+whoami+-%3E+Naman+Shrimal;%24+role%C2%A0%C2%A0+-%3E+Data+Engineer+%40+Navikenz;%24+focus%C2%A0+-%3E+AI%2C+Agents+%26+Applied+ML;%24+also%C2%A0%C2%A0+-%3E+Full-stack+when+it+ships;%24+status+-%3E+Building+until+my+tokens+expire%21"
   alt="whoami: Naman Shrimal. role: Data Engineer @ Navikenz. focus: AI, Agents and Applied ML. also: Full-stack when it ships. status: Building until my tokens expire!"
 />
 

@@ -93,8 +93,29 @@ that's the style chosen, not because of a font limitation. If you prefer the rea
 `font=Press+Start+2P`. `readme-typing-svg` pulls any Google Font and embeds it in the
 SVG, so it renders for everyone with no local install.
 
-`center=true` is deliberately omitted — centring each line inside the 580px box would
-break the left-hand `$` column that makes it read as a terminal.
+`center=true` is deliberately omitted — centring each line inside the box would break
+the left-hand `$` column that makes it read as a terminal.
+
+**Sizing the window.** `readme-typing-svg` does *not* shrink to fit: whatever `height=`
+you give it becomes the canvas, and any leftover is empty space inside your box. The
+first version used `height=190` for content that ended at 89px — 101px of dead air,
+which is why the window looked oversized.
+
+Line baselines sit at a fixed **17px** pitch (`17, 34, 51, 68, 85` for five lines) and
+that pitch comes from the font size, *not* from `height` — so shrinking the canvas does
+not squash the lines. To size it correctly:
+
+```
+height = 17 × (number of lines) + ~11
+width  = 12 × (longest line in characters) + ~24
+```
+
+Press Start 2P is monospace with a 1em advance, so at `size=12` each character is
+exactly 12px wide. Current values: 5 lines and a 44-character longest line give
+`height=96`, `width=552`.
+
+Add or reword a line and you must recompute both, or you'll get dead space again — or
+clipping, which is worse.
 
 > **Use ASCII `->`, never a real arrow.** Press Start 2P is an 8-bit font with no `→`
 > glyph. A missing glyph doesn't fall back to another font here — it renders as an empty
