@@ -52,7 +52,9 @@
 <!-- ══════════════════ MODULE: SOCIAL ══════════════════
      Animated icons for platforms that have one, then a badge row for the rest.
      Only LinkedIn, Twitter and Discord exist as animated GIFs in this set —
-     GitHub and email deliberately use badges rather than mismatched icons.
+     Row 1: LinkedIn and Discord are animated GIFs. X is a static tile because
+     the Cool-GIFs set predates the rebrand and only has the old Twitter bird.
+     Row 2: pixel-art terminal chips, generated locally into assets/.
      Docs: CUSTOMIZE.md#social
 -->
 <div align="center">
@@ -61,18 +63,21 @@
   <img src="https://user-images.githubusercontent.com/74038190/235294012-0a55e343-37ad-4b0f-924f-c8431d9d2483.gif" width="52" alt="LinkedIn" />
 </a>
 &nbsp;&nbsp;
-<a href="https://twitter.com/Namanshrimal12">
-  <img src="https://user-images.githubusercontent.com/74038190/235294011-b8074c31-9097-4a65-a594-4151b58743a8.gif" width="52" alt="Twitter" />
+<a href="https://x.com/Namanshrimal12">
+  <img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/x-logo.png" width="46" alt="X" />
 </a>
 &nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/74038190/235294015-47144047-25ab-417c-af1b-6746820a20ff.gif" width="52" alt="Discord: Naman1201" title="Discord: Naman1201" />
 
-<br/>
+<br/><br/>
 
-<a href="mailto:namanshrimal12@gmail.com"><img src="https://img.shields.io/badge/Email-namanshrimal12%40gmail.com-22D3EE?style=flat-square&logo=gmail&logoColor=0D1117&labelColor=161B22" alt="Email" /></a>
-<a href="https://naman1201.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-naman1201.vercel.app-7C3AED?style=flat-square&logo=vercel&logoColor=E6EDF3&labelColor=161B22" alt="Portfolio" /></a>
-<a href="https://codepen.io/Namans12"><img src="https://img.shields.io/badge/CodePen-%40Namans12-2DD4BF?style=flat-square&labelColor=161B22" alt="CodePen" /></a>
-<img src="https://img.shields.io/badge/Discord-Naman1201-5865F2?style=flat-square&logo=discord&logoColor=E6EDF3&labelColor=161B22" alt="Discord: Naman1201" />
+<!-- Pixel-art terminal chips. Each is a PNG drawn at 1:1 and upscaled with
+     NEAREST, so it must render at its natural size — do NOT add width= or
+     height= here, or the browser resamples it and the pixels go soft. -->
+<a href="mailto:namanshrimal12@gmail.com"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-email.png" alt="Email: namanshrimal12@gmail.com" title="namanshrimal12@gmail.com" /></a>
+<a href="https://naman1201.vercel.app/"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-portfolio.png" alt="Portfolio: naman1201.vercel.app" title="naman1201.vercel.app" /></a>
+<a href="https://codepen.io/Namans12"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-codepen.png" alt="CodePen: @Namans12" title="@Namans12" /></a>
+<img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-discord.png" alt="Discord: Naman1201" title="Naman1201" />
 
 </div>
 <!-- ══════════════════ END MODULE: SOCIAL ══════════════════ -->
@@ -317,8 +322,6 @@ NLP post-processing assembling letters into coherent words. Team lead.
 <img src="https://img.shields.io/badge/Azure%20AI%20Engineer%20Associate-0078D4?style=flat-square" alt="Azure AI Engineer Associate" />
 <br/>
 <img src="https://img.shields.io/badge/Azure%20AI%20Fundamentals-0078D4?style=flat-square" alt="Azure AI Fundamentals" />
-<br/>
-<img src="https://img.shields.io/badge/Introduction%20to%20Generative%20AI-4285F4?style=flat-square&logo=googlecloud&logoColor=white" alt="Introduction to Generative AI, Google Cloud" />
 
 </td>
 <td width="50%" valign="top">
