@@ -31,19 +31,40 @@
 
 
 <!-- ══════════════════ MODULE: TYPING ══════════════════
-     Animated terminal headline. Setup: none.
-     To change the lines, edit the `lines=` parameter — entries are separated
-     by `;` and must be URL-encoded (space=+, &=%26, comma=%2C, @=%40).
+     A terminal window: static session log, then one live animated prompt.
+
+     The frame is a one-cell <table>. That isn't decorative — CSS is stripped
+     from READMEs, so a bordered table cell is the only way to draw a box.
+
+     The log is a ```console fenced block. GitHub highlights shell sessions,
+     which is what tints the $ prompts. Keep the arrows aligned by hand.
+
+     The last line is animated instead of static, so the box has motion without
+     repeating itself. Font is Press Start 2P (pixel); it has no arrow glyph,
+     so every line uses ASCII "->". A real arrow renders as an empty box.
      Docs: CUSTOMIZE.md#typing
 -->
 <div align="center">
 
-<a href="https://naman1201.vercel.app/">
-  <img
-    src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=23&duration=2600&pause=750&color=22D3EE&center=true&vCenter=true&width=780&height=64&lines=%24+whoami+%E2%86%92+Naman+Shrimal;%24+role+%E2%86%92+Data+Engineer+%40+Navikenz;%24+focus+%E2%86%92+AI%2C+Agents+%26+Applied+ML;%24+also+%E2%86%92+Full-stack%2C+when+it+needs+shipping;%24+status+%E2%86%92+turning+messy+data+into+decisions..."
-    alt="Data Engineer at Navikenz. AI, Agents and Applied ML. Full-stack when it needs shipping."
-  />
-</a>
+<table>
+<tr><td>
+
+<sub>&nbsp;🔴&nbsp; 🟡&nbsp; 🟢 &nbsp;&nbsp;&nbsp; <b>naman@github</b> &nbsp;—&nbsp; zsh</sub>
+
+```console
+$ whoami -> Naman Shrimal
+$ role   -> Data Engineer @ Navikenz
+$ focus  -> AI, Agents & Applied ML
+$ also   -> Full-stack when it ships
+```
+
+<img
+  src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=12&duration=3200&pause=900&color=22D3EE&vCenter=true&width=560&height=34&lines=%24+status+-%3E+Building+until+my+tokens+expire%21"
+  alt="status: Building until my tokens expire!"
+/>
+
+</td></tr>
+</table>
 
 </div>
 <!-- ══════════════════ END MODULE: TYPING ══════════════════ -->
@@ -52,9 +73,11 @@
 <!-- ══════════════════ MODULE: SOCIAL ══════════════════
      Animated icons for platforms that have one, then a badge row for the rest.
      Only LinkedIn, Twitter and Discord exist as animated GIFs in this set —
-     Row 1: LinkedIn and Discord are animated GIFs. X is a static tile because
-     the Cool-GIFs set predates the rebrand and only has the old Twitter bird.
-     Row 2: pixel-art terminal chips, generated locally into assets/.
+     Row 1: LinkedIn and Discord are animated GIFs from the Cool-GIFs set.
+     That set predates the rebrand and has no X, so assets/x-logo.gif is
+     generated locally from the official mark — see CUSTOMIZE.md#social.
+     Row 2: shields badges. Gmail's mark is forced white; CodePen has no
+     shields logo at all, so its icon is passed inline as a base64 SVG.
      Docs: CUSTOMIZE.md#social
 -->
 <div align="center">
@@ -64,20 +87,17 @@
 </a>
 &nbsp;&nbsp;
 <a href="https://x.com/Namanshrimal12">
-  <img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/x-logo.png" width="46" alt="X" />
+  <img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/x-logo.gif" width="52" alt="X" />
 </a>
 &nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/74038190/235294015-47144047-25ab-417c-af1b-6746820a20ff.gif" width="52" alt="Discord: Naman1201" title="Discord: Naman1201" />
 
 <br/><br/>
 
-<!-- Pixel-art terminal chips. Each is a PNG drawn at 1:1 and upscaled with
-     NEAREST, so it must render at its natural size — do NOT add width= or
-     height= here, or the browser resamples it and the pixels go soft. -->
-<a href="mailto:namanshrimal12@gmail.com"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-email.png" alt="Email: namanshrimal12@gmail.com" title="namanshrimal12@gmail.com" /></a>
-<a href="https://naman1201.vercel.app/"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-portfolio.png" alt="Portfolio: naman1201.vercel.app" title="naman1201.vercel.app" /></a>
-<a href="https://codepen.io/Namans12"><img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-codepen.png" alt="CodePen: @Namans12" title="@Namans12" /></a>
-<img src="https://raw.githubusercontent.com/Namans12/Namans12/master/assets/chip-discord.png" alt="Discord: Naman1201" title="Naman1201" />
+<a href="mailto:namanshrimal12@gmail.com"><img src="https://img.shields.io/badge/Email-namanshrimal12%40gmail.com-22D3EE?style=flat-square&logo=gmail&logoColor=white&labelColor=161B22" alt="Email" /></a>
+<a href="https://naman1201.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-naman1201.vercel.app-7C3AED?style=flat-square&logo=vercel&logoColor=white&labelColor=161B22" alt="Portfolio" /></a>
+<a href="https://codepen.io/Namans12"><img src="https://img.shields.io/badge/CodePen-%40Namans12-2DD4BF?style=flat-square&labelColor=161B22&logo=data:image/svg%2Bxml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvZGVQZW48L3RpdGxlPjxwYXRoIGQ9Ik0xOC4xNDQgMTMuMDY3di0yLjEzNEwxNi41NSAxMnptMS4yNzYgMS4xOTRhLjYyOC42MjggMCAwMS0uMDA2LjA4M2wtLjAwNS4wMjgtLjAxMS4wNTMtLjAxLjAzMWMtLjAwNS4wMTYtLjAxLjAzMS0uMDE3LjA0N2wtLjAxNC4wM2EuNzguNzggMCAwMS0uMDIxLjA0M2wtLjAxOS4wM2EuNTcuNTcgMCAwMS0uMDguMWwtLjAyNi4wMjVhLjYwMi42MDIgMCAwMS0uMDM2LjAzbC0uMDI5LjAyMi0uMDEuMDA4LTYuNzgyIDQuNTIyYS42MzcuNjM3IDAgMDEtLjcwOCAwTDQuODY0IDE0Ljc5bC0uMDEtLjAwOGEuNTk5LjU5OSAwIDAxLS4wNjUtLjA1MmwtLjAyNi0uMDI1LS4wMzItLjAzNC0uMDIxLS4wMjhhLjU4OC41ODggMCAwMS0uMDY3LS4xMWwtLjAxNC0uMDMxYS42NDQuNjQ0IDAgMDEtLjAxNy0uMDQ3bC0uMDEtLjAzYy0uMDA0LS4wMTgtLjAwOC0uMDM2LS4wMS0uMDU0bC0uMDA2LS4wMjhhLjYyOC42MjggMCAwMS0uMDA2LS4wODNWOS43MzljMC0uMDI4LjAwMi0uMDU1LjAwNi0uMDgzbC4wMDUtLjAyNy4wMTEtLjA1NC4wMS0uMDNhLjU3NC41NzQgMCAwMS4xMi0uMjE3bC4wMzEtLjAzNC4wMjYtLjAyNWEuNjIuNjIgMCAwMS4wNjUtLjA1MmwuMDEtLjAwOCA2Ljc4Mi00LjUyMWEuNjM4LjYzOCAwIDAxLjcwOCAwbDYuNzgyIDQuNTIxLjAxLjAwOC4wMy4wMjIuMDM1LjAzYy4wMS4wMDguMDE3LjAxNi4wMjYuMDI1YS41NDUuNTQ1IDAgMDEuMDguMWwuMDE5LjAzYS42MzMuNjMzIDAgMDEuMDIxLjA0M2wuMDE0LjAzYy4wMDcuMDE2LjAxMi4wMzIuMDE3LjA0N2wuMDEuMDMxYy4wMDQuMDE4LjAwOC4wMzYuMDEuMDU0bC4wMDYuMDI3YS42MTkuNjE5IDAgMDEuMDA2LjA4M3pNMTIgMEM1LjM3MyAwIDAgNS4zNzIgMCAxMiAwIDE4LjYyNyA1LjM3MyAyNCAxMiAyNGM2LjYyOCAwIDEyLTUuMzcyIDEyLTEyIDAtNi42MjctNS4zNzItMTItMTItMTJtMCAxMC40OTJMOS43NDUgMTIgMTIgMTMuNTEgMTQuMjU1IDEyem0uNjM4IDQuMTI0djIuOTc1bDQuOTk2LTMuMzMtMi4yMzItMS40OTN6bS02LjI3Mi0uMzU2bDQuOTk2IDMuMzN2LTIuOTc0bC0yLjc2NC0xLjg0OXptMTEuMjY4LTQuNTJsLTQuOTk2LTMuMzN2Mi45NzRsMi43NjQgMS44NXptLTYuMjcyLS4zNTZWNi40MUw2LjM2NiA5Ljc0bDIuMjMyIDEuNDkzem0tNS41MDYgMS41NDl2Mi4xMzRMNy40NSAxMloiLz48L3N2Zz4=" alt="CodePen" /></a>
+<img src="https://img.shields.io/badge/Discord-Naman1201-5865F2?style=flat-square&logo=discord&logoColor=white&labelColor=161B22" alt="Discord: Naman1201" />
 
 </div>
 <!-- ══════════════════ END MODULE: SOCIAL ══════════════════ -->
