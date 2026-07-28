@@ -31,17 +31,24 @@
 
 
 <!-- ══════════════════ MODULE: TYPING ══════════════════
-     A terminal window: static session log, then one live animated prompt.
+     A terminal window where the whole session types itself out, one line at a
+     time, then loops.
 
-     The frame is a one-cell <table>. That isn't decorative — CSS is stripped
-     from READMEs, so a bordered table cell is the only way to draw a box.
+     The frame is a one-cell <table>. Not decorative — CSS is stripped from
+     READMEs, so a bordered table cell is the only way to draw a box.
 
-     The log is a ```console fenced block. GitHub highlights shell sessions,
-     which is what tints the $ prompts. Keep the arrows aligned by hand.
+     multiline=true is what makes lines accumulate instead of replacing each
+     other. Without it readme-typing-svg types a line, erases it, and types the
+     next, so you only ever see one line at a time.
 
-     The last line is animated instead of static, so the box has motion without
-     repeating itself. Font is Press Start 2P (pixel); it has no arrow glyph,
-     so every line uses ASCII "->". A real arrow renders as an empty box.
+     ALIGNMENT USES NO-BREAK SPACES (%C2%A0), NOT ORDINARY SPACES.
+     SVG collapses any run of plain spaces to a single space, so "role   ->"
+     would render as "role ->" and the arrows would not line up. Measured:
+     three spaces render at exactly the same width as one. U+00A0 does not
+     collapse, and Press Start 2P does include it.
+
+     Encoding for `lines=`: separate with `;`, space `+`, no-break space
+     `%C2%A0`, `&` `%26`, `,` `%2C`, `@` `%40`, `>` `%3E`, `!` `%21`.
      Docs: CUSTOMIZE.md#typing
 -->
 <div align="center">
@@ -51,16 +58,9 @@
 
 <sub>&nbsp;🔴&nbsp; 🟡&nbsp; 🟢 &nbsp;&nbsp;&nbsp; <b>naman@github</b> &nbsp;—&nbsp; zsh</sub>
 
-```console
-$ whoami -> Naman Shrimal
-$ role   -> Data Engineer @ Navikenz
-$ focus  -> AI, Agents & Applied ML
-$ also   -> Full-stack when it ships
-```
-
 <img
-  src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=12&duration=3200&pause=900&color=22D3EE&vCenter=true&width=560&height=34&lines=%24+status+-%3E+Building+until+my+tokens+expire%21"
-  alt="status: Building until my tokens expire!"
+  src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=12&duration=2400&pause=800&color=22D3EE&multiline=true&width=580&height=190&repeat=true&lines=%24+whoami+-%3E+Naman+Shrimal;%24+role%C2%A0%C2%A0+-%3E+Data+Engineer+%40+Navikenz;%24+focus%C2%A0+-%3E+AI%2C+Agents+%26+Applied+ML;%24+also%C2%A0%C2%A0+-%3E+Full-stack+when+it+ships;%24+status+-%3E+Building+until+my+tokens+expire%21"
+  alt="whoami: Naman Shrimal. role: Data Engineer @ Navikenz. focus: AI, Agents and Applied ML. also: Full-stack when it ships. status: Building until my tokens expire!"
 />
 
 </td></tr>

@@ -64,24 +64,37 @@ from READMEs, so there is no way to draw a border, rounded corner or panel. Tabl
 are the only element GitHub gives a visible border, which makes a one-cell table the
 only route to a box.
 
-**The log is a ` ```console ` fenced block**, which survives inside a `<td>` *and* keeps
-its syntax highlighting — that's what tints the `$` prompts. Verified against GitHub's
-renderer; the output came back wrapped in
-`<div class="highlight highlight-text-shell-session">`. Keep the arrows aligned by hand;
-it's a code block, so the spacing is preserved exactly as typed.
+**`multiline=true` is the important parameter.** It makes lines accumulate, so the
+session builds up one line at a time and then loops. Without it, `readme-typing-svg`
+types a line, erases it, and types the next — you only ever see one line at once, which
+is not what a terminal looks like.
 
-**Only the last line is animated.** Splitting it this way means the box has motion
-without repeating itself: the four factual lines are always readable at a glance, and
-the status line — the one with personality — is the thing that moves. If you'd rather
-have all five static, move the status line into the fenced block and delete the `<img>`.
+**Alignment uses no-break spaces (`%C2%A0`), not ordinary spaces.** This is the part
+that will bite you if you edit the lines:
 
-**The font is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)**,
-requested through `font=Press+Start+2P`. `readme-typing-svg` pulls any Google Font and
-embeds it in the SVG, so it renders for everyone without a local install.
+> SVG collapses any run of plain spaces down to one. Measured in a browser with
+> `getComputedTextLength()`: `"$ role -> X"` and `"$ role&nbsp;&nbsp;&nbsp;-> X"` (three
+> plain spaces) both render at **96.8px** — identical. Adding `xml:space="preserve"`
+> did not help either. The same string with three **no-break** spaces measures
+> **114.4px**, so it survives.
+>
+> Press Start 2P does include U+00A0, so this is safe — confirmed by reading the font's
+> cmap directly (656 glyphs mapped).
 
-`center=true` is deliberately **omitted**. With it on, the text centres inside the SVG's
-560px box and floats away from the `$` column of the log above it. Left-aligned is what
-makes the animated line look like part of the same terminal session.
+So the padding that lines up the `->` column is `%C2%A0`, and plain `+` spaces are only
+used between words. Change a keyword's length and you must adjust its padding to match.
+
+**On the arrows:** an earlier version of this file claimed Press Start 2P had no arrow
+glyph. That was wrong — U+2192 (`→`) *is* present. The lines use ASCII `->` because
+that's the style chosen, not because of a font limitation. If you prefer the real arrow,
+`%E2%86%92` works.
+
+**The font** is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P), via
+`font=Press+Start+2P`. `readme-typing-svg` pulls any Google Font and embeds it in the
+SVG, so it renders for everyone with no local install.
+
+`center=true` is deliberately omitted — centring each line inside the 580px box would
+break the left-hand `$` column that makes it read as a terminal.
 
 > **Use ASCII `->`, never a real arrow.** Press Start 2P is an 8-bit font with no `→`
 > glyph. A missing glyph doesn't fall back to another font here — it renders as an empty
