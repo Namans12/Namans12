@@ -95,7 +95,7 @@
 <br/><br/>
 
 <a href="mailto:namanshrimal12@gmail.com"><img src="https://img.shields.io/badge/Email-namanshrimal12%40gmail.com-22D3EE?style=flat-square&logo=gmail&logoColor=white&labelColor=161B22" alt="Email" /></a>
-<a href="https://naman1201.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-naman1201.vercel.app-7C3AED?style=flat-square&logo=vercel&logoColor=white&labelColor=161B22" alt="Portfolio" /></a>
+<a href="https://namanshrimal.indevs.in"><img src="https://img.shields.io/badge/Portfolio-namanshrimal.indevs.in-7C3AED?style=flat-square&logo=vercel&logoColor=white&labelColor=161B22" alt="Portfolio" /></a>
 <a href="https://codepen.io/Namans12"><img src="https://img.shields.io/badge/CodePen-%40Namans12-2DD4BF?style=flat-square&labelColor=161B22&logo=data:image/svg%2Bxml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvZGVQZW48L3RpdGxlPjxwYXRoIGQ9Ik0xOC4xNDQgMTMuMDY3di0yLjEzNEwxNi41NSAxMnptMS4yNzYgMS4xOTRhLjYyOC42MjggMCAwMS0uMDA2LjA4M2wtLjAwNS4wMjgtLjAxMS4wNTMtLjAxLjAzMWMtLjAwNS4wMTYtLjAxLjAzMS0uMDE3LjA0N2wtLjAxNC4wM2EuNzguNzggMCAwMS0uMDIxLjA0M2wtLjAxOS4wM2EuNTcuNTcgMCAwMS0uMDguMWwtLjAyNi4wMjVhLjYwMi42MDIgMCAwMS0uMDM2LjAzbC0uMDI5LjAyMi0uMDEuMDA4LTYuNzgyIDQuNTIyYS42MzcuNjM3IDAgMDEtLjcwOCAwTDQuODY0IDE0Ljc5bC0uMDEtLjAwOGEuNTk5LjU5OSAwIDAxLS4wNjUtLjA1MmwtLjAyNi0uMDI1LS4wMzItLjAzNC0uMDIxLS4wMjhhLjU4OC41ODggMCAwMS0uMDY3LS4xMWwtLjAxNC0uMDMxYS42NDQuNjQ0IDAgMDEtLjAxNy0uMDQ3bC0uMDEtLjAzYy0uMDA0LS4wMTgtLjAwOC0uMDM2LS4wMS0uMDU0bC0uMDA2LS4wMjhhLjYyOC42MjggMCAwMS0uMDA2LS4wODNWOS43MzljMC0uMDI4LjAwMi0uMDU1LjAwNi0uMDgzbC4wMDUtLjAyNy4wMTEtLjA1NC4wMS0uMDNhLjU3NC41NzQgMCAwMS4xMi0uMjE3bC4wMzEtLjAzNC4wMjYtLjAyNWEuNjIuNjIgMCAwMS4wNjUtLjA1MmwuMDEtLjAwOCA2Ljc4Mi00LjUyMWEuNjM4LjYzOCAwIDAxLjcwOCAwbDYuNzgyIDQuNTIxLjAxLjAwOC4wMy4wMjIuMDM1LjAzYy4wMS4wMDguMDE3LjAxNi4wMjYuMDI1YS41NDUuNTQ1IDAgMDEuMDguMWwuMDE5LjAzYS42MzMuNjMzIDAgMDEuMDIxLjA0M2wuMDE0LjAzYy4wMDcuMDE2LjAxMi4wMzIuMDE3LjA0N2wuMDEuMDMxYy4wMDQuMDE4LjAwOC4wMzYuMDEuMDU0bC4wMDYuMDI3YS42MTkuNjE5IDAgMDEuMDA2LjA4M3pNMTIgMEM1LjM3MyAwIDAgNS4zNzIgMCAxMiAwIDE4LjYyNyA1LjM3MyAyNCAxMiAyNGM2LjYyOCAwIDEyLTUuMzcyIDEyLTEyIDAtNi42MjctNS4zNzItMTItMTItMTJtMCAxMC40OTJMOS43NDUgMTIgMTIgMTMuNTEgMTQuMjU1IDEyem0uNjM4IDQuMTI0djIuOTc1bDQuOTk2LTMuMzMtMi4yMzItMS40OTN6bS02LjI3Mi0uMzU2bDQuOTk2IDMuMzN2LTIuOTc0bC0yLjc2NC0xLjg0OXptMTEuMjY4LTQuNTJsLTQuOTk2LTMuMzN2Mi45NzRsMi43NjQgMS44NXptLTYuMjcyLS4zNTZWNi40MUw2LjM2NiA5Ljc0bDIuMjMyIDEuNDkzem0tNS41MDYgMS41NDl2Mi4xMzRMNy40NSAxMloiLz48L3N2Zz4=" alt="CodePen" /></a>
 <img src="https://img.shields.io/badge/Discord-Naman1201-5865F2?style=flat-square&logo=discord&logoColor=white&labelColor=161B22" alt="Discord: Naman1201" />
 
@@ -582,6 +582,10 @@ Three true things that didn't fit anywhere else:
 <img src="https://komarev.com/ghpvc/?username=Namans12&label=Profile%20views&color=22D3EE&style=flat-square&abbreviated=true" alt="Profile view counter" />
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2DD4BF,50:22D3EE,100:7C3AED&height=140&section=footer" alt="" width="100%" />
+
+<!-- A folio, as on a printed page. The companion profile at
+     github.com/namans1201 carries "ii". Neither page explains it. -->
+<sub>&#8212;&nbsp; i &nbsp;&#8212;</sub>
 
 </div>
 <!-- ══════════════════ END MODULE: FOOTER ══════════════════ -->

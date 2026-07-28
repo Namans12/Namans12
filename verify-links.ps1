@@ -1,11 +1,11 @@
-<#
+﻿<#
 .SYNOPSIS
     Checks every remote asset referenced by README.md actually loads.
 
 .DESCRIPTION
     A profile README is mostly third-party image services. When one of them
-    goes down — and they do; the official github-readme-stats instance is
-    paused as of this writing — your profile silently fills with broken-image
+    goes down - and they do; the official github-readme-stats instance is
+    paused as of this writing - your profile silently fills with broken-image
     icons and you are the last person to find out.
 
     This script pulls every https:// URL out of README.md, requests each one,
@@ -112,12 +112,12 @@ foreach ($url in $urls) {
         }
         elseif ($type -match 'svg' -and -not (Test-ValidXml $resp.Content)) {
             # An SVG that isn't well-formed XML still returns 200, but browsers
-            # refuse to draw it — the image silently disappears. This bites when a
+            # refuse to draw it - the image silently disappears. This bites when a
             # badge service interpolates your text without escaping it: a literal
             # "&" in a title or description is enough to kill the whole graphic.
             $failures.Add([pscustomobject]@{
                 Url    = $url
-                Reason = 'SVG is not well-formed XML — browsers will not render it (usually an unescaped "&" in your text)'
+                Reason = 'SVG is not well-formed XML - browsers will not render it (usually an unescaped "&" in your text)'
             })
             Write-Host ("  [XML!] {0}" -f $short) -ForegroundColor Red
         }
@@ -130,17 +130,23 @@ foreach ($url in $urls) {
         # raw.githubusercontent 404s are expected before the snake workflow
         # has run for the first time, so flag them separately.
         if ($url -match 'raw\.githubusercontent\.com/.+/output/') {
-            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'snake output branch not built yet — run the workflow' })
+            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'snake output branch not built yet - run the workflow' })
             Write-Host ("  [pend] {0}" -f $short) -ForegroundColor Yellow
         }
         elseif ($url -match 'raw\.githubusercontent\.com/Namans12/Namans12/|github\.com/Namans12/Namans12/blob/') {
             # Files committed locally but not pushed yet. These 404 until the
             # push lands, which is expected rather than broken.
-            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'repo asset not pushed yet — will resolve after git push' })
+            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'repo asset not pushed yet - will resolve after git push' })
             Write-Host ("  [pend] {0}" -f $short) -ForegroundColor Yellow
         }
+        elseif ($msg -match '\b429\b') {
+            # Too Many Requests never means broken - it means this checker has
+            # been hitting the host too fast. Report it, don't fail on it.
+            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'rate limited (HTTP 429) - re-check later or open it in a browser' })
+            Write-Host ("  [429 ] {0}" -f $short) -ForegroundColor DarkYellow
+        }
         elseif (Test-BotBlocked -Url $url -Message $msg) {
-            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'site refuses bots — verify manually in a browser' })
+            $warnings.Add([pscustomobject]@{ Url = $url; Reason = 'site refuses bots - verify manually in a browser' })
             Write-Host ("  [bot ] {0}" -f $short) -ForegroundColor DarkYellow
         }
         else {
